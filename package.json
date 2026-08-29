@@ -1,0 +1,10 @@
+{
+  "name": "scholarship-navigator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Scholarship Navigator — static demo prototype. Editorial information design.",
+  "scripts": {
+    "lint": "node scripts/lint.mjs",
+    "build": "node scripts/build.mjs"
+  }
+}

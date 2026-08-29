@@ -1,0 +1,129 @@
+/* Scholarship Navigator — design tokens, base type, landing page. */
+:root{
+  --ink:#17211D; --muted:#5B655F; --faint:#8A9089;
+  --bg:#F6F4EF; --surface:#FFFDF8; --border:#D9D7CE;
+  --green:#176B5B; --green-soft:#DCEBE5; --terra:#C9794A; --terra-soft:#F7E8DC;
+  --red:#A63A2E; --red-soft:#F6E3DF;
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+  --t-micro:140ms; --t-control:200ms; --t-panel:400ms; --t-page:450ms;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.55 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p,label,ol,ul{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+input,select,textarea{font:inherit}
+a{color:var(--green)}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:4px}
+.hidden{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0)}
+
+/* ---------- shared chrome ---------- */
+.eyebrow{display:block;color:var(--green);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:12px 20px;border:1px solid var(--green);border-radius:12px;
+  background:var(--green);color:var(--surface);font-weight:550;letter-spacing:-.01em;
+  transition:background var(--t-control) var(--ease-out),border-color var(--t-control) var(--ease-out),color var(--t-control) var(--ease-out);
+}
+.button:hover{background:#115549;border-color:#115549}
+.button:active{background:#0F4A3F}
+.button.danger{background:var(--red);border-color:var(--red)}
+.secondary{background:transparent;color:var(--green);border-color:var(--border)}
+.secondary:hover{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+.inline-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inline-actions button{
+  min-height:44px;border:1px solid var(--border);border-radius:10px;background:var(--surface);
+  color:var(--ink);font-weight:500;font-size:.9rem;
+  transition:border-color var(--t-micro) var(--ease-out),background var(--t-micro) var(--ease-out);
+}
+.inline-actions button:hover{border-color:var(--green);background:var(--green-soft)}
+
+/* status chips — typographic, dot instead of icon */
+.status-chip{
+  display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:99px;
+  background:var(--green-soft);color:var(--green);font-size:.72rem;font-weight:550;letter-spacing:.04em;text-transform:uppercase;
+}
+.status-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.status-chip.warning{background:var(--terra-soft);color:#96562B}
+.status-chip.danger{background:var(--red-soft);color:var(--red)}
+.status-chip.good{background:var(--green-soft);color:var(--green)}
+
+/* ---------- signature application timeline ---------- */
+.app-timeline{list-style:none;padding:0;margin:0}
+.app-timeline li{
+  position:relative;display:grid;grid-template-columns:34px 1fr;column-gap:16px;
+  padding-bottom:26px;color:var(--faint);
+}
+.app-timeline li:last-child{padding-bottom:0}
+.app-timeline li:not(:last-child)::before{
+  content:"";position:absolute;left:16px;top:34px;bottom:2px;width:2px;background:var(--border);
+  transition:background var(--t-panel) var(--ease-out);
+}
+.app-timeline li.done{color:var(--ink)}
+.app-timeline li.done::before{background:var(--green)}
+.app-timeline li.current{color:var(--ink)}
+.app-timeline li.current::before{background:linear-gradient(var(--green),var(--border))}
+.app-timeline .stage-no{
+  display:block;font-size:.68rem;font-weight:550;letter-spacing:.12em;color:var(--faint);
+  font-variant-numeric:tabular-nums;margin-bottom:2px;
+}
+.app-timeline li.done .stage-no,.app-timeline li.current .stage-no{color:var(--green)}
+.app-timeline .stage-name{display:block;font-size:.95rem;font-weight:550;letter-spacing:-.01em}
+.app-timeline .stage-note{display:block;font-size:.8rem;color:var(--muted);margin-top:2px}
+.app-timeline .stage-dot{
+  position:relative;z-index:1;display:grid;place-items:center;width:34px;height:34px;
+  border:1px solid var(--border);border-radius:50%;background:var(--surface);
+  font-size:.72rem;font-weight:550;font-variant-numeric:tabular-nums;font-style:normal;
+  transition:border-color var(--t-control) var(--ease-out),background var(--t-control) var(--ease-out),color var(--t-control) var(--ease-out);
+}
+.app-timeline li.done .stage-dot{background:var(--green);border-color:var(--green);color:var(--surface)}
+.app-timeline li.current .stage-dot{border-color:var(--green);color:var(--green);background:var(--green-soft)}
+.app-timeline li.current .stage-dot::after{
+  content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--green);
+  opacity:0;animation:stageBreathe 2.6s var(--ease-out) infinite;
+}
+@keyframes stageBreathe{0%{transform:scale(.85);opacity:0}35%{opacity:.55}70%{transform:scale(1.12);opacity:0}100%{opacity:0}}
+
+/* ---------- landing ---------- */
+.landing{min-height:100vh;display:flex;flex-direction:column;width:min(100% - 40px,640px);margin:0 auto;padding:28px 0 40px}
+.landing-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.brand-mark{font-size:.9rem;font-weight:600;letter-spacing:-.02em}
+.brand-mark::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);margin-right:9px}
+.text-link{border:0;background:none;padding:0;color:var(--muted);font-size:.82rem;border-bottom:1px solid var(--border);transition:color var(--t-micro) var(--ease-out),border-color var(--t-micro) var(--ease-out)}
+.text-link:hover{color:var(--green);border-color:var(--green)}
+.landing-hero{padding:clamp(48px,12vh,96px) 0 44px}
+.landing-hero h1{margin:18px 0 20px;font-size:clamp(2.5rem,9vw,4.2rem);line-height:1.06;letter-spacing:-.035em;font-weight:550}
+.landing-hero h1 em{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.lede{max-width:34ch;color:var(--muted);font-size:1.02rem;margin-bottom:30px}
+.landing-hero .button{min-width:220px}
+.landing-foot{margin-top:auto;padding-top:28px;border-top:1px solid var(--border);color:var(--faint);font-size:.75rem}
+
+/* application-path visual — numbered path with thin filling rules */
+.path-visual{position:relative;margin-top:clamp(36px,7vh,64px);padding-top:26px;border-top:1px solid var(--border)}
+.path-visual .path-caption{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:18px}
+.path-visual ol{list-style:none;padding:0;display:grid;gap:14px}
+.path-visual li{display:grid;grid-template-columns:26px 1fr 190px auto;align-items:center;column-gap:14px;font-size:.92rem;color:var(--muted)}
+.path-visual li b{font-weight:550;color:var(--ink)}
+.path-visual .path-no{font-size:.72rem;letter-spacing:.1em;color:var(--faint);font-variant-numeric:tabular-nums}
+.path-visual .path-rule{position:relative;height:2px;background:var(--border);border-radius:2px;overflow:hidden}
+.path-visual .path-rule i{position:absolute;inset:0;background:var(--green);transform-origin:left;transform:scaleX(0);animation:pathFill 1s .3s var(--ease-out) forwards}
+.path-visual li:nth-child(2) .path-rule i{animation-delay:.5s;animation-duration:.8s}
+.path-visual li:nth-child(3) .path-rule i{animation-delay:.7s;animation-duration:.6s}
+.path-visual li:nth-child(4) .path-rule i{animation-delay:.9s;animation-duration:.4s}
+@keyframes pathFill{to{transform:scaleX(1)}}
+.path-visual .path-state{font-size:.74rem;color:var(--green)}
+.path-visual li:not(:first-child) .path-state{color:var(--faint)}
+
+/* ---------- page transition ---------- */
+.view{animation:viewIn var(--t-page) var(--ease-out) both}
+@keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.enter{animation:enter .4s var(--ease-out) both}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}

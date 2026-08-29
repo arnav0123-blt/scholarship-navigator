@@ -1,0 +1,101 @@
+/* Portal chrome, dashboard, shared surfaces. */
+.shell{width:min(100% - 32px,680px);margin:0 auto;padding-bottom:64px}
+.portal-head{
+  position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 0;margin:0;background:#F6F4EFEE;backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
+}
+.portal-brand{display:flex;align-items:baseline;gap:9px;font-size:.82rem;font-weight:600;letter-spacing:-.01em}
+.portal-brand::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--green);align-self:center}
+.portal-brand small{font-weight:450;color:var(--faint);font-size:.72rem}
+.utility{display:flex;gap:6px}
+.utility button{
+  min-width:38px;min-height:36px;padding:0 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);
+  color:var(--muted);font-size:.75rem;font-weight:550;
+  transition:border-color var(--t-micro) var(--ease-out),color var(--t-micro) var(--ease-out),background var(--t-micro) var(--ease-out);
+}
+.utility button:hover{border-color:var(--green);color:var(--green);background:var(--green-soft)}
+/* section tabs — typographic, no glyphs */
+.tabs{
+  position:sticky;top:64px;z-index:9;display:flex;gap:6px;overflow-x:auto;padding:10px 0 12px;max-width:100vw;
+  background:#F6F4EFEE;backdrop-filter:blur(10px);scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{
+  flex:0 0 auto;min-height:38px;padding:0 14px;border:1px solid transparent;border-radius:99px;background:transparent;
+  color:var(--muted);font-size:.82rem;font-weight:500;white-space:nowrap;
+  transition:background var(--t-control) var(--ease-out),color var(--t-control) var(--ease-out),border-color var(--t-control) var(--ease-out);
+}
+.tabs button:hover{color:var(--green)}
+.tabs button.active{background:var(--green);border-color:var(--green);color:var(--surface)}
+.portal-main{padding:8px 0 24px}
+.portal-main h1{font-size:clamp(1.5rem,5vw,1.9rem);font-weight:550;letter-spacing:-.03em;line-height:1.15;margin:26px 0 10px}
+.portal-main h1+p{margin-bottom:4px}
+
+.view-title{font-size:clamp(1.5rem,5vw,1.9rem);font-weight:550;letter-spacing:-.03em;line-height:1.15}
+.view-sub{margin-top:6px;color:var(--muted);font-size:.9rem}
+.section-title{
+  margin:32px 0 14px;padding-top:16px;border-top:1px solid var(--border);
+  font-size:.75rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);
+}
+.card{
+  border:1px solid var(--border);border-radius:16px;background:var(--surface);
+  transition:border-color var(--t-micro) var(--ease-out);
+}
+p{color:var(--muted)}
+.notice{padding:12px 14px;border-left:3px solid var(--terra);background:var(--terra-soft);color:#7A4A28;font-size:.84rem;border-radius:0 10px 10px 0}
+.official-reminder{margin-top:24px;padding:12px 14px;border-left:3px solid var(--border);color:var(--faint);font-size:.8rem}
+.empty{padding:28px 0;text-align:center;color:var(--faint);font-size:.9rem}
+
+/* ---------- dashboard: WHERE → MEANING → ACTION → NEXT ---------- */
+.dash-greeting{padding:26px 0 20px}
+.dash-greeting h1{font-size:clamp(1.7rem,6vw,2.2rem);font-weight:550;letter-spacing:-.03em}
+.dash-greeting p{margin-top:5px;font-size:.9rem}
+.status-hero{padding:22px 20px;margin-bottom:0;cursor:pointer;transition:border-color var(--t-micro) var(--ease-out)}
+.status-hero:hover{border-color:var(--green)}
+.status-hero-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.q-label{font-size:.68rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+.status-hero h2{font-size:1.5rem;font-weight:550;letter-spacing:-.025em;margin-bottom:8px}
+.status-hero>p{font-size:.92rem}
+.status-hero .ref{margin-top:4px;font-size:.78rem;color:var(--faint);font-variant-numeric:tabular-nums}
+.status-answers{display:grid;grid-template-columns:1fr;gap:0;margin-top:18px;border-top:1px solid var(--border)}
+.status-answers>div{display:grid;grid-template-columns:118px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:.86rem}
+.status-answers>div:last-child{border-bottom:0;padding-bottom:0}
+.status-answers b{font-size:.68rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);padding-top:2px}
+.status-answers span{color:var(--ink)}
+.status-answers .urgent span{color:#96562B;font-weight:550}
+/* dashboard alert */
+.alert{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:16px;padding:13px 15px;border-radius:12px;background:var(--terra-soft);border:1px solid #EAD3C0;color:#7A4A28;font-size:.84rem}
+.alert b{font-weight:550}
+
+/* dashboard quick actions — text, full-width tap targets */
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.quick-grid button{
+  min-height:74px;padding:12px;border:1px solid var(--border);border-radius:14px;background:var(--surface);
+  font-size:.84rem;font-weight:500;color:var(--ink);text-align:left;line-height:1.35;
+  transition:border-color var(--t-micro) var(--ease-out),background var(--t-micro) var(--ease-out);
+}
+.quick-grid button small{display:block;color:var(--faint);font-size:.72rem;font-weight:450}
+.quick-grid button:hover{border-color:var(--green);background:var(--green-soft)}
+
+/* toast */
+#toast{
+  position:fixed;left:50%;bottom:24px;z-index:30;transform:translate(-50%,12px);
+  max-width:min(90vw,360px);padding:12px 18px;border-radius:12px;background:var(--ink);color:var(--bg);
+  font-size:.84rem;box-shadow:0 12px 32px #17211D33;opacity:0;pointer-events:none;
+  transition:opacity var(--t-panel) var(--ease-out),transform var(--t-panel) var(--ease-out);
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+footer{padding:20px 0 32px;color:var(--faint);font-size:.72rem;text-align:center}
+.size-1{font-size:18px}
+.size--1{font-size:14px}
+/* dark mode overrides */
+body.dark{background:#141915}
+.portal.dark{
+  --ink:#EAE8DF; --muted:#A8AFA6; --faint:#7C837A;
+  --bg:#141915; --surface:#1C221E; --border:#39423B;
+  --green:#5CC4A6; --green-soft:#1F332C; --terra:#E09A6A; --terra-soft:#3A2A1E;
+  --red:#E08377; --red-soft:#3A211E;
+  background:var(--bg);color:var(--ink);min-height:100vh;
+}
+.portal.dark .portal-head,.portal.dark .tabs{background:#141915EE}
+.portal.dark .portal.dark .button:hover{background:#47A88D}
